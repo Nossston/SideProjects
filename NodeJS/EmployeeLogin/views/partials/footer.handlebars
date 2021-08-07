@@ -1,0 +1,36 @@
+<footer>
+  <div class="footer2">
+    <span>Follow us</span><br /><a href="#"><i
+        class="fab fa-twitter"
+      ></i></a>&nbsp;&nbsp;<a href="#"><i
+        class="fab fa-youtube"
+      ></i></a>&nbsp;&nbsp;<a href="#"><i class="fab fa-instagram"></i></a>
+    <nav>
+      <a href="/">Home</a>
+      {{#if user.Admin}}
+        <a href="/admin">Dashboard</a>
+        <a href="/user/logout">Logout</a>
+      {{else}}
+        {{#if user}}
+          <a href="/user">Dashboard</a>
+          <a href="/user/logout">Logout</a>
+        {{else}}
+          <a
+            href="/register"
+            onclick="document.getElementById('id01').style.display='block'"
+            id="signupbut"
+          >
+            Register</a>
+          <a
+            href="/login"
+            onclick="document.getElementById('id03').style.display='block'"
+            id="loginbut"
+          >
+            Log in</a>
+        {{/if}}
+      {{/if}}
+      <p>Copyright 2021- by PRJ Team1. All Rights Reserved.
+      </p>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="/css/login.css" />
+<body>
+  <div class="bg-img">
+    <div class="content">
+      {{> msg}}
+      <form action="/register" method="POST">
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            required
+            placeholder="First Name"
+            value="{{firstName}}"
+          />
+        </div>
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            value="{{lastName}}"
+          />
+        </div>
+
+        <div class="field">
+          <span class="fa fa-envelope"></span>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Email"
+            value="{{email}}"
+          />
+        </div>
+
+        <div class="field">
+          <span class="fa fa-phone"></span>
+          <input type="text" id="phone" name="phone" placeholder="Phone" value="{{phone}}" />
+        </div>
+        <div class="field">
+          <span class="fa fa-map-pin"></span>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Address"
+            value="{{address}}"
+          />
+        </div>
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input
+            type="password"
+            class="pass-key"
+            id="password"
+            name="password"
+            for="password"
+            required
+            placeholder="Password"
+          />
+          <span class="show">SHOW</span>
+        </div>
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="confirmPassword"
+            for="confirmPassword"
+            placeholder="Confirm your password"
+            required
+          />
+          <span class="show">SHOW</span>
+        </div>
+        <div class="field">
+          <input type="submit" value="Register" />
+        </div>
+
+        <div class="signup">
+          Already have an account? Log in now
+          <a href="/login">Login</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <script>
+    const pass_field = document.querySelector(".pass-key"); const showBtn
+    =document.querySelector(".show"); showBtn.addEventListener("click", function
+    () { if (pass_field.type === "password") { pass_field.type = "text";
+    showBtn.textContent = "HIDE"; showBtn.style.color = "#3498db"; } else {
+    pass_field.type = "password"; showBtn.textContent = "SHOW";
+    showBtn.style.color = "#222"; } }); const pass_field_confirm =
+    document.querySelector(".pass-key_confirm");
+  </script>
+</body>

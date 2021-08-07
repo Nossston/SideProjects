@@ -1,0 +1,44 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link rel="stylesheet" href="/css/header.css" />
+
+<header>
+  <a href="/" class="abicon"><img
+      src="/img/ICON3.png"
+      alt="Arete Logo"
+      width="60"
+    /></a>
+  <nav>
+
+    {{#if user}}
+      <div class="navbar">
+        <div class="dropdown">
+          <button class="dropbtn">Welcome
+            {{user.firstName}},
+            {{user.lastName}}
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            {{! <a href="/redirect">Dashboard</a> }}
+            {{#if user.isManager}}
+              <a href="/admin">Manager Dashboard</a>
+              <a href="/user">Employee Dashboard</a>
+            {{else}}
+              <a href="/user">Dashboard</a>
+            {{/if}}
+            <a href="/employee/">Edit my profile</a>
+            <a href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  </nav>
+</header>
+
+<script>
+
+</script>

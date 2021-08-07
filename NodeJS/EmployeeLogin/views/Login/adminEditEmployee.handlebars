@@ -1,0 +1,54 @@
+<head>
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+<h2 class="aligncenter">admin Edit an Employee
+  {{firstName}},
+  {{lastName}}</h2><br />
+<div class="form-content">
+  <form action="/adminEditEmployee/{{id}}/?_method=PUT" method="POST">
+    <label for="firstName">First Name</label>
+    <input type="text" name="firstName" class="txtbx" value="{{firstName}}" />
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" class="txtbx" value="{{lastName}}" />
+    <label for="email">Email (this field can't be edited)</label>
+    <input type="text" name="email" class="txtbx" value="{{email}}" readonly />
+    <br /><br />
+    <label for="isManager">Is this account a Manager</label>
+    <br /><br />
+    <div class="checkArea">
+      <input
+        type="radio"
+        name="trueChecked"
+        onclick="falseChecked.checked = false;"
+        {{trueChecked}}
+      />Yes &emsp;
+      <input
+        type="radio"
+        name="falseChecked"
+        onclick="trueChecked.checked = false;"
+        {{falseChecked}}
+      />No<br />
+      <br />
+    </div>
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" class="txtbx" value="{{phone}}" />
+    <label for="address">Address</label>
+    <input type="text" name="address" class="txtbx" value="{{address}}" />
+    <label for="salary">Salary</label>
+    <input type="text" name="salary" class="txtbx" value="{{salary}}" />
+    <label for="commission">Commission %</label>
+    <input type="text" name="commission" class="txtbx" value="{{commission}}" />
+    <label for="hireDate">Hire Date</label>
+    <input type="date" name="hireDate" class="txtbx" value="{{hireDate}}" />
+    <label for="positionName">Position Name</label>
+    <input
+      type="text"
+      name="positionName"
+      class="txtbx"
+      value="{{positionName}}"
+    />
+    <div class="input-group btn-cotainer">
+      <input type="submit" class="btn btn-dark" value="Update This Employee" />
+    </div>
+  </form>
+</div>

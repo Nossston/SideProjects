@@ -1,0 +1,59 @@
+<head>
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+<h2 class="aligncenter">Edit an Employee {{firstName}}, {{lastName}}</h2><br />
+<h2 class="aligncenter" style="color: red;">{{error}}</h2>
+<h2 class="aligncenter" style="color: green;">{{success}}</h2>
+<div class="form-content">
+  <form action="/employee/{{_id}}/?_method=PUT" method="POST">
+    <label for="SIN">SIN</label>
+    <input type="text" name="SIN" class="txtbx" value="{{SIN}}" />
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" class="txtbx" value="{{phone}}" />
+    <label for="address">Address</label>
+    <input type="text" name="address" class="txtbx" value="{{address}}" />
+    <label for="salary">Salary</label>
+    <input
+      type="text"
+      name="salary"
+      class="txtbx"
+      value="{{salary}}"
+      readonly
+    />
+    <label for="commission">Commission</label>
+    <input
+      type="text"
+      name="commission"
+      class="txtbx"
+      value="{{commission}}"
+      readonly
+    />
+    <label for="hireDate">Hire Date</label>
+    <input
+      type="date"
+      name="hireDate"
+      class="txtbx"
+      value="{{hireDate}}"
+      readonly
+    />
+    <label for="positionName">Position Name</label>
+    <input
+      type="text"
+      name="positionName"
+      class="txtbx"
+      readonly
+      value="{{positionName}}"
+    />
+    <div class="input-group btn-cotainer">
+      <a
+        href="/reset/{{_id}}"
+        class="btn btn-dark"
+        style="background-color: red;"
+        value=""
+      >Reset Password</a>
+    </div>
+    <div class="input-group btn-cotainer">
+      <input type="submit" class="btn btn-dark" value="Update This Employee" />
+    </div>
+  </form>
+</div>

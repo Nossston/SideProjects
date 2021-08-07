@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/login.css" />
+<!-- Created By CodingNepal -->
+<body>
+  <div class="bg-img">
+    <div class="content">
+      {{#each errors}}
+        <p>{{this}} errorsssss</p>
+      {{/each}}
+      <form action="/forgot" method="POST">
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            required
+            placeholder="Email"
+          />
+        </div>
+        <div class="field">
+          <input type="submit" value="Send a reset link" />
+        </div>
+      </form>
+      <div class="signup">
+        Don't have account?
+        <br />
+        <a href="/register">Signup Now</a>
+      </div>
+    </div>
+  </div>
+</body>

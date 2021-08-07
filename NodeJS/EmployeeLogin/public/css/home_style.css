@@ -1,0 +1,183 @@
+header {
+  background-image: url("/img/STANDARD2.png");
+  background-size: cover;
+  background-position: center;
+  max-height: 100vh;
+  height: 100vh;
+  max-width: 100%;
+}
+
+a {
+  color: #ffffff;
+}
+
+.modal4 {
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  max-width: 100%;
+  max-height: 100%;
+  left: 10vw;
+  top: 16vh;
+}
+
+.modal-content4 {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  max-width: 100%;
+  width: 82%;
+  max-height: 100%;
+}
+
+.col4 {
+  float: center;
+  width: auto;
+  margin: auto;
+  padding: 36px;
+  width: 100%;
+}
+
+.bookingtitle {
+  color: #3f3e3e;
+}
+
+.bookinglabel {
+  color: #393939;
+  font-size: 0.7rem;
+}
+
+.slctbx,
+.slctbx option {
+  background: transparent;
+  border: none transparent;
+  font-size: 1rem;
+  color: #696969;
+  width: 100%;
+  height: 100%;
+}
+
+.promotion {
+  padding: 1.5%;
+}
+
+.promocontain {
+  background-image: url("/img/baby.jpg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 3.6% 6%;
+  border-radius: 22px;
+}
+
+.promotxt {
+  background-color: rgb(220, 220, 220); /* Fallback color */
+  background-color: rgba(220, 220, 220, 0.7); /* Black w/ opacity */
+  color: #434343;
+  width: 40%;
+  padding: 2%;
+}
+
+.promotxt h2 {
+  font-family: "Kalam", cursive;
+  font-weight: bolder;
+}
+
+/******** RESPONSIVE DESIGN ********/
+
+/******** LAPTOP ********/
+
+@media screen and (min-width: 801px) {
+  body {
+    width: 100%;
+    min-width: 801px;
+  }
+}
+
+/******** TABLET ********/
+
+@media screen and (min-width: 501px) and (max-width: 800px) {
+  body {
+    max-width: 800px;
+    min-width: 501px;
+  }
+
+  header {
+    width: 100%;
+  }
+}
+
+/******** SMARTPHONE ********/
+
+@media (max-width: 500px) {
+  body {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  header {
+    background-color: rgb(50, 50, 50); /* Fallback color */
+    background-color: rgba(50, 50, 50, 0.5); /* Black w/ opacity */
+    background-size: cover;
+    background-blend-mode: overlay;
+    max-height: 100px;
+    width: 100%;
+  }
+
+  .modal4 {
+    position: unset;
+    left: 0;
+    top: 0;
+  }
+
+  .modal-content4 {
+    border: none;
+    width: 100%;
+  }
+
+  .col4 {
+    padding: 29px;
+    width: 100%;
+  }
+
+  .bookingtitle {
+    font-size: 1.5rem;
+  }
+
+  .promotion {
+    padding: 1.5%;
+  }
+
+  .promocontain {
+    padding: 3.6% 6%;
+  }
+
+  .promotxt {
+    width: 46%;
+  }
+
+  .promotxt h2 {
+    font-size: 1rem;
+  }
+
+  .vdio {
+    margin: 0;
+    padding-bottom: 0;
+  }
+
+  .audiv h1,
+  .audivcon h1 {
+    font-size: 1.6rem;
+  }
+
+  figure {
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+  }
+
+  .headshot {
+    width: 77%;
+    height: 300px;
+    padding-bottom: 0;
+  }
+}

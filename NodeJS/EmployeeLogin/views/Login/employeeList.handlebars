@@ -1,0 +1,38 @@
+<head>
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<div class="body-container">
+  <div class="header">
+    <h2 class="aligncenter">Employees</h2>
+  </div>
+  <p class="message"> {{success_msg}} </p>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone #</th>
+        <th scope="col">Position Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each Employees}}
+        <tr id={{employeeId}}>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}</td>
+          <td>{{address}}</td>
+          <td>{{email}}</td>
+          <td>{{phone}}</td>
+          <td>{{positionName}}</td>
+          <td>
+            <a class="btn btn-warning" href="/adminEditEmployee/{{_id}}">Admin
+              Edit</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
