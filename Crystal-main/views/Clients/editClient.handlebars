@@ -1,0 +1,419 @@
+<head>
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<div class="body-container">
+  <div class="form-header" style="display: flex;">
+    <div style="flex: 1; max-width: 160px;">
+         <h2 class="text-left">Edit Client</h2>
+    </div>
+    <div class="text-right" style="flex: 1;">
+      <a class="btn-client btn-black" style="width: 100px;" href="/clients/clientDetail/{{client.clientId}}">Details</a>
+      <a class="btn-client btn-outline-dark" href="/clients">Back to List</a>
+    </div>
+  </div>
+  <div class="form-container">
+    <form
+      class="create-client-form"
+      method="POST"
+      action="/clients/editClient/{{client.clientId}}"
+      onsubmit="return validateForm()"
+    >
+    {{!-- ?_method=PUT --}}
+      {{#if error}}<div class="errors alignleft">{{error}}</div>{{/if}}
+
+      <div class="input-group">
+        <label for="firstName">First Name<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="firstName"
+          name="firstName"
+          type="text"
+          placeholder="Please enter client's first name"
+          value={{#if client.firstName}}"{{client.firstName}}"{{else}}""{{/if}}
+        />
+        <small id="firstName-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="lastName">Last Name<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="lastName"
+          name="lastName"
+          type="text"
+          placeholder="Please enter client's last name"
+           value={{#if client.lastName}}"{{client.lastName}}"{{else}}""{{/if}}
+        />
+        <small id="lastName-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Please enter client's email"
+           value={{#if client.email}}"{{client.email}}"{{else}}""{{/if}}
+        />
+        <small id="email-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="countryOfCitizenShip">Country Of Citizen Ship<span
+            class="required"
+          >*</span></label>
+        <select name="countryOfCitizenShip" id="countryOfCitizenShip" class="client-input">
+          <option value="">Please enter client's Country Of Citizen Ship</option>
+          {{#each countryAndProvinces}}
+            <option value={{id}} {{#ifEquals @root.client.countryOfCitizenShip id}} selected {{/ifEquals}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <small id="countryOfCitizenShip-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="uci">UCI Number</label>
+        <input
+          class="client-input"
+          id="uci"
+          name="uci_number"
+          type="text"
+          placeholder="Please enter client's UCI number"
+           value={{#if client.uci_number}}"{{client.uci_number}}"{{else}}""{{/if}}
+        />
+      </div>
+
+      <div class="input-group-inline">
+        <label>Gender<span class="required">*</span></label><br />
+        <label class="checkbox-inline">
+          <input type="radio" id="genderM" name="gender" value="Male" {{#ifEquals client.gender "Male"}} checked {{/ifEquals}}/>
+          Male
+        </label>
+        <label class="checkbox-inline">
+          <input type="radio" id="genderF" name="gender" value="Female" {{#ifEquals client.gender "Female"}} checked {{/ifEquals}}/>
+          Female
+        </label>
+        <label class="checkbox-inline">
+          <input type="radio" id="genderNB" name="gender" value="Nonbinary" {{#ifEquals client.gender "Nonbinary"}} checked {{/ifEquals}}/>
+          Non-binary
+        </label>
+      </div>
+      <small id="gender-error" class="error-message"></small>
+
+      <div class="input-group">
+        <label for="dob">Date of Birth<span class="required">*</span></label>
+        <input type="date" name="dob" id="dob" class="client-input"  
+        value={{#if client.dob}}"{{client.dob}}"{{else}}""{{/if}}/>
+        <small id="dob-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="firstLanguage">First Language<span
+            class="required"
+          >*</span></label>
+        <select name="firstLanguage" id="firstLanguage" class="client-input">
+          {{#each languages}}
+            <option value={{value}} {{#ifEquals @root.client.firstLanguage value}} selected {{/ifEquals}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <small id="firstLanguage-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="address">Address<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="address"
+          name="address"
+          type="text"
+          placeholder="Please enter client's address"
+           value={{#if client.address}}"{{client.address}}"{{else}}""{{/if}}
+        />
+        <small id="address-error" class="error-message"></small>
+      </div>
+    
+
+      <div class="input-group">
+
+        <label for="phoneNumber">Phone Number<span
+            class="required"
+          >*</span></label>
+        <input
+          class="client-input"
+          id="phoneNumber"
+          name="phoneNumber"
+          type="text"
+          placeholder="Please enter client's phone number"
+           value={{#if client.phoneNumber}}"{{client.phoneNumber}}"{{else}}""{{/if}}
+        />
+        <small id="phoneNumber-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="dateEntersCanada">Date Enters Canada<span
+            class="required"
+          >*</span></label>
+        <input
+          type="date"
+          name="dateEntersCanada"
+          id="dateEntersCanada"
+          class="client-input"
+           value={{#if client.dateEntersCanada}}"{{client.dateEntersCanada}}"{{else}}""{{/if}}
+        />
+        <small id="dateEntersCanada-error" class="error-message"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="employeeID">Employee<span
+            class="required"
+          >*</span></label>
+        <select name="employeeID" id="employeeID" class="client-input">
+          <option value="">Please select an Employee</option>
+          {{#each employees}}
+            <option value={{employeeId}} {{#ifEquals @root.client.employeeID employeeId}} selected {{/ifEquals}}>{{firstName}} {{lastName}}</option>
+          {{/each}}
+        </select>
+        <small id="employeeID-error" class="error-message"></small>
+      </div>
+
+    {{!-- Passport Details --}}
+      <fieldset>
+        <legend>Passport Details</legend> 
+        <div style="padding-left: 1rem;">
+          <small id="passport-error" class="error-message no-padding"></small> 
+        </div>
+        <div class="input-group">
+          <label for="passportNumber">Passport Number</label>
+          <input
+            class="client-input"
+            id="passportNumber"
+            name="passportNumber"
+            type="text"
+            placeholder="Please enter client's passport number"
+            value={{#if client.passport.passportNumber}}"{{client.passport.passportNumber}}"{{else}}""{{/if}}
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="issueDate">Passport Issue Date</label>
+          <input
+            class="client-input"
+            id="issueDate"
+            name="issueDate"
+            type="date"
+            placeholder="Please enter client's passport Issue Date"
+            value={{#if client.passport.issueDate}}"{{client.passport.issueDate}}"{{else}}""{{/if}}
+          />
+        </div>
+
+        <div class="input-group">
+
+          <label for="expireDate">Passport Expire Date</label>
+          <input
+            class="client-input"
+            id="expireDate"
+            name="expireDate"
+            type="date"
+            placeholder="Please enter client's passport Expire Date"
+            value={{#if client.passport.expireDate}}"{{client.passport.expireDate}}"{{else}}""{{/if}}
+          />
+        </div>
+        
+        <div class="input-group">
+          <label for="placeOfBirth">Passport Place Of Birth</label>
+          <select name="placeOfBirth" id="placeOfBirth" class="client-input">
+            <option value="">Please enter client's passport Place Of Birth</option>
+            {{#each countryAndProvinces}}
+              <optgroup label={{name}}>
+                {{#each provinces}}
+                  <option value={{id}} {{#ifEquals @root.client.passport.placeOfBirth id}} selected {{/ifEquals}}>{{name}}</option>
+                {{/each}}
+              </optgroup>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="input-group">
+
+          <label for="placeOfIssue">Passport Place Of Issue</label>
+          <select name="placeOfIssue" id="placeOfIssue" class="client-input">
+            <option value="">Please enter client's passport Place Of Issue</option>
+            {{#each countryAndProvinces}}
+              <optgroup label={{name}}>
+                {{#each provinces}}
+                  <option value={{id}} {{#ifEquals @root.client.passport.placeOfIssue id}} selected {{/ifEquals}}>{{name}}</option>
+                {{/each}}
+              </optgroup>
+            {{/each}}
+          </select>
+        </div>
+      </fieldset>
+
+      {{!-- Status Details --}}
+      <fieldset>
+        <legend>Status Details</legend> 
+        <div style="padding-left: 1rem;">
+          <small id="status-error" class="error-message no-padding"></small> 
+        </div>
+        <div class="input-group">
+          <label for="firstLanguage">Status</label>
+          <select name="statusID" id="statusID" class="client-input">
+            {{#each clientStaus}}
+              <option value={{value}} {{#ifEquals @root.client.status.statusID value}} selected {{/ifEquals}}>{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+         <div class="input-group">
+          <label for="statusExpireDate">Status Expire Date</label>
+          <input
+            type="date"
+            name="statusExpireDate"
+            id="statusExpireDate"
+            class="client-input"
+            value={{#if client.status.statusExpireDate}}"{{client.status.statusExpireDate}}"{{else}}""{{/if}}
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="address">Status Document ID</label>
+          <input
+            class="client-input"
+            id="statusDocumerntID"
+            name="statusDocumerntID"
+            type="text"
+            placeholder="Please enter client's Status Documernt ID"
+            value={{#if client.status.statusDocumerntID}}"{{client.status.statusDocumerntID}}"{{else}}""{{/if}}
+          />
+        </div>
+      </div>
+      </fieldset>
+
+      <div class="input-group btn-cotainer">
+        <input type="submit" class="btn btn-dark" value="Update This Client" />
+      </div>
+              <input
+          class="client-input"
+          id="clientId"     
+          name="clientId"
+          type="text"
+          value="{{client.clientId}}"
+          style="visibility: hidden;"
+        />
+    </form>
+  </div>
+</div>
+<div>
+  <br>
+</div>
+<script>
+  // Front End field validation
+
+function validateForm() {
+  var errorCounts = 0;
+
+  var validate = (id, errorMessage, defaultValue = '') => {
+    var field = $(`#${id}`).val();
+    $(`#${id}-error`).html('');
+    if (field === null || field === undefined || field.trim() === '' ||  field.trim() === defaultValue) {
+      $(`#${id}-error`).html(errorMessage)
+      return false;
+    }
+    return true;
+  };
+
+  var validateRadioButton = (id, errorMessage) => {
+    $(`#${id}-error`).html('');
+    var isValid = $(`input[name=${id}]`).is(":checked");
+    if(!isValid) {
+      $(`#${id}-error`).html(errorMessage)
+    }
+    return true;
+  };
+
+  var isDateGreater = (smallerDate, greaterDate) => {
+    if (Date.parse(greaterDate) > Date.parse(smallerDate)) {
+      return true;
+    }
+    return false;
+  };
+
+  // Validate required fields
+  errorCounts += validate('employeeID', 'Please select an employee.') ? 0 : 1;
+  errorCounts += validate('email', 'Please enter client\'s email.') ? 0 : 1;
+  errorCounts += validate('firstName', 'Please enter client\'s First Name.') ? 0 : 1;
+  errorCounts += validate('lastName', 'Please enter client\'s Last Name.') ? 0 : 1;
+  errorCounts += validateRadioButton('gender', 'Please select client\'s Gender.') ? 0 : 1;
+  errorCounts += validate('countryOfCitizenShip', 'Please select client\'s Country Of Citizen Ship.') ? 0 : 1;
+  errorCounts += validate('dob', 'Please enter client\'s Date of Birth.') ? 0 : 1;
+  errorCounts += validate('phoneNumber', 'Please enter client\'s Phone Number.') ? 0 : 1;
+  errorCounts += validate('address', 'Please enter client\'s Address.') ? 0 : 1;
+  errorCounts += validate('dateEntersCanada', 'Please enter client\'s Date Enter to Canada.') ? 0 : 1;
+  errorCounts += validate('firstLanguage', 'Please select client\'s First Language.', '0') ? 0 : 1;
+
+  // Validate Passport Data if it's set
+  var passportNumber = $(`#passportNumber`).val();
+  var issueDate = $(`#issueDate`).val();
+  var expireDate = $(`#expireDate`).val();
+  var placeOfBirth = $(`#placeOfBirth`).val();
+  var placeOfIssue = $(`#placeOfIssue`).val();
+  $('#passport-error').html('');
+  if (passportNumber || issueDate || expireDate || placeOfBirth || placeOfIssue) {
+    var passportErrorMsg = '';
+    if(!passportNumber){
+      passportErrorMsg += 'Passport Number is Missing\n';
+    }
+    if(!issueDate){
+      passportErrorMsg += 'Passport Issue Date is Missing\n';
+    }
+    if(!expireDate){  
+      passportErrorMsg += 'Passport Expire Date is Missing\n';
+    }
+    if(!placeOfBirth){
+      passportErrorMsg += 'Passport Place of Birth is Missing\n';
+    }
+    if(!placeOfIssue){
+      passportErrorMsg += 'Passport Place of Issue is Missing\n';
+    }
+    if(issueDate && expireDate && !isDateGreater(issueDate, expireDate)) {
+      passportErrorMsg += 'Passport Expire Date needs to be greater than Issue Date.';
+    }
+    if(passportErrorMsg !== '') {
+      errorCounts++;
+      $('#passport-error').html(passportErrorMsg);
+    }
+  }
+
+  // Validate Status Data if it's set
+  var statusType = $(`#statusID`).val();
+  console.log(statusType)
+  var statusExpireDate = $(`#statusExpireDate`).val();
+  var statusDocument = $(`#statusDocumerntID`).val();
+  $('#status-error').html('');
+  if (statusType !== '0' || statusExpireDate || statusDocument) {
+    var statusErrorMsg = '';
+    if(statusType === '0'){
+      statusErrorMsg += 'Status Type is Missing\n';
+    }
+    if(!statusExpireDate){
+      statusErrorMsg += 'Status Expire Date is Missing\n';
+    }
+    if(!statusDocument){
+      statusErrorMsg += 'Status Document ID is Missing\n';
+    }
+    if(statusErrorMsg !== '') {
+      errorCounts++;
+      $('#status-error').html(statusErrorMsg);
+    
+
+  if (errorCounts > 0) {
+    return false;
+  }
+  return true;
+}
+
+
+
+</script>

@@ -1,0 +1,324 @@
+<head>
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<div class="body-container">
+  <div class="form-header" style="display: flex;">
+    <div style="flex: 1; max-width: 160px;">
+         <h2 class="text-left">Client Details</h2>
+    </div>
+    <div class="text-right" style="flex: 1;">
+      <a class="btn-client btn-black" style="width: 100px;" href="/clients/editClient/{{client.clientId}}">Edit</a>
+      {{!-- <a class="btn-client btn-danger" style="width: 100px;" href="/clients/deleteClient/{{client.clientId}}">Delete</a> --}}
+      <form
+        style="padding: 0;"
+        class="btn-client"
+        method="POST"
+        action="/clients/deleteClient/{{client.clientId}}"
+      >
+        <button
+          class="btn-client btn-danger"
+          type="submit"
+        >Delete</button>
+      </form>
+      <a class="btn-client btn-outline-dark" href="/clients">Back to List</a>
+    </div>
+  </div>
+  <div class="form-container">
+    <div
+      class="create-client-form">
+      {{#if error}}<div class="errors alignleft">{{error}}</div>{{/if}}
+
+      <div class="input-group">
+        <label for="firstName">First Name<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="firstName"
+          name="firstName"
+          type="text"
+          readonly="true"
+          value="{{client.firstName}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="lastName">Last Name<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="lastName"
+          name="lastName"
+          type="text"
+          readonly="true"
+           value="{{client.lastName}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="email"
+          name="email"
+          type="email"
+          readonly="true"
+           value="{{client.email}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="countryOfCitizenShip">Country Of Citizen Ship<span
+            class="required"
+          >*</span></label>
+        <input
+          class="client-input"
+          id="countryOfCitizenShip"
+          name="countryOfCitizenShip"
+          type="text"
+          readonly="true"
+           value="{{client.countryOfCitizenShip}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="uci">UCI Number</label>
+        <input
+          class="client-input"
+          id="uci"
+          name="uci_number"
+          type="text"
+          readonly="true"
+           value="{{client.uci_number}}"
+        />
+      </div>
+      <div class="input-group">
+        <label for="gender">Gender<span class="required">*</span></label>
+                <input
+          class="client-input"
+          id="gender"
+          name="gender"
+          type="text"
+          readonly="true"
+           value="{{client.gender}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="dob">Date of Birth<span class="required">*</span></label>
+        <input type="date" name="dob" id="dob" class="client-input"  
+        readonly="true"
+        value="{{client.dob}}"/>
+      </div>
+
+      <div class="input-group">
+        <label for="firstLanguage">First Language<span
+            class="required"
+          >*</span></label>
+                <input
+          class="client-input"
+          id="firstLanguage"
+          name="firstLanguage"
+          type="text"
+          readonly="true"
+           value="{{client.firstLanguage}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="address">Address<span class="required">*</span></label>
+        <input
+          class="client-input"
+          id="address"
+          name="address"
+          type="text"
+          readonly="true"
+           value="{{client.address}}"
+        />
+      </div>
+    
+
+      <div class="input-group">
+
+        <label for="phoneNumber">Phone Number<span
+            class="required"
+          >*</span></label>
+        <input
+          class="client-input"
+          id="phoneNumber"
+          name="phoneNumber"
+          type="text"
+          readonly="true"
+           value="{{client.phoneNumber}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="dec">Date Enters Canada<span
+            class="required"
+          >*</span></label>
+        <input
+          type="date"
+          name="dateEntersCanada"
+          id="dob"
+          class="client-input"
+          readonly="true"
+           value="{{client.dateEntersCanada}}"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="employeeID">Employee<span
+            class="required"
+          >*</span></label>
+        <input
+          type="text"
+          name="employeeID"
+          id="employeeID"
+          class="client-input"
+          readonly="true"
+           value="{{employee.firstName}} {{employee.lastName}}"
+        />
+      </div>
+
+    {{!-- Passport Details --}}
+      <fieldset>
+        <legend>Passport Details</legend> 
+        <div class="input-group">
+          <label for="passportNumber">Passport Number</label>
+          <input
+            class="client-input"
+            id="passport"
+            name="passportNumber"
+            type="text"
+            readonly="true"
+            value="{{client.passport.passportNumber}}"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="issueDate">Passport Issue Date</label>
+          <input
+            class="client-input"
+            id="issueDate"
+            name="issueDate"
+            type="date"
+            readonly="true"
+            value="{{client.passport.issueDate}}"
+          />
+        </div>
+
+        <div class="input-group">
+
+          <label for="expireDate">Passport Expire Date</label>
+          <input
+            class="client-input"
+            id="expireDate"
+            name="expireDate"
+            type="date"
+            readonly="true"
+            value="{{client.passport.expireDate}}"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="placeOfBirth">Passport Place Of Birth</label>
+       <input
+            class="client-input"
+            id="placeOfBirth"
+            name="placeOfBirth"
+            type="text"
+            readonly="true"
+            value="{{client.passport.placeOfBirth}}"
+          />
+        </div>
+
+        <div class="input-group">
+
+          <label for="placeOfIssue">Passport Place Of Issue</label>
+       <input
+            class="client-input"
+            id="placeOfIssue"
+            name="placeOfIssue"
+            type="text"
+            readonly="true"
+            value="{{client.passport.placeOfIssue}}"
+          />
+        </div>
+      </fieldset>
+
+      {{!-- Status Details --}}
+      <fieldset>
+        <legend>Status Details</legend> 
+        <div class="input-group">
+          <label for="statusID">Status</label>
+      <input
+            type="text"
+            name="statusID"
+            id="statusID"
+            class="client-input"
+            readonly="true"
+            value="{{client.status.statusID}}"
+          />
+        </div>
+
+         <div class="input-group">
+          <label for="statusExpireDate">Status Expire Date</label>
+          <input
+            type="date"
+            name="statusExpireDate"
+            id="statusExpireDate"
+            class="client-input"
+            readonly="true"
+            value="{{client.status.statusExpireDate}}"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="address">Status Document ID</label>
+          <input
+            class="client-input"
+            id="statusDocumerntID"
+            name="statusDocumerntID"
+            type="text"
+            readonly="true"
+            value="{{client.status.statusDocumerntID}}"
+          />
+        </div>
+      </div>
+      </fieldset>
+        <div class="mt-4">
+          <div class="text-center">
+            <h2>Application Case Type</h2>
+          </div>
+            <table class="table table-striped" id="applications">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Case Type</th>
+                  <th scope="col">Sub Case Type</th>
+                  <th scope="col nosort">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each applications}}
+                  <tr>
+                    <td>{{casetype}}</td>
+                    <td>{{subcase}}</td>
+                    <td class="text-center">
+                      <a
+                        class="btn-client btn-secondary"
+                        href="/apps/appDetail/{{this._id}}"
+                      >Details</a>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<div>
+    <br>
+</div>
+<script>
+  $(document).ready( function () { $('#applications').DataTable( { columnDefs: [ {
+  orderable: false, targets: -1 } ] } ); } );
+</script>

@@ -1,0 +1,53 @@
+<head>
+    <link rel="stylesheet" href="/css/clientAndApps_style.css">
+</head>
+
+<h2 class="aligncenter">Application Details</h2><br>
+
+<div class="form-content">
+    {{#each errors}}<div class="errs alignleft">{{this}}</div>{{/each}}
+    <label for="client">Client</label>
+    <input name="client" type="text" class="txtbx" value="{{app.client.firstName}} {{app.client.lastName}}" readonly="true">
+    <label for="employee">Employee in Charge</label>
+    <input name="employee" type="text" class="txtbx" value="{{app.agent.firstName}} {{app.agent.lastName}}" readonly="true">
+    <label for="caseType">Case Type</label>
+    <input name="caseType" type="text" class="txtbx" value="{{app.subCaseType}}" readonly="true">
+    <label for="contractNumber">Contract Number</label>
+    <input type="text" name="contractNumber" value="{{app.contractID}}" class="txtbx" readonly="true">
+    <label for="contractDate">Contract Signing Date</label>
+    <input type="date" name="contractDate" value="{{app.contractDate}}" class="txtbx" readonly="true">
+    <label for="paymentHistory">Payment History</label>
+    <table id="listTable">
+        <tr>
+            <th>Payment ID</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Method</th>
+        </tr>
+        {{!-- {{#each app.payment}} --}}
+        <tr>
+            <td>{{app.payment.paymentID}}</td>
+            <td>{{app.payment.amount}}</td>
+            <td>{{app.payment.date}}</td>
+            <td>{{app.payment.method}}</td>
+        </tr>
+        {{!-- {{/each}} --}}
+    </table>
+    <br>
+    <label for="submissionDate">Date Submit</label>
+    <input type="date" name="submissionDate" value="{{app.submitDate}}" class="txtbx" readonly="true">
+    <label for="appStatus">Application Status</label>
+    <input name="appStatus" type="text" class="txtbx" value="{{app.appStatus}}" readonly="true">
+    <label for="notes">Notes</label>
+    <textarea name="notes" placeholder="Additional Notes" class="txtbx des" readonly="true">{{app.notes}}</textarea>
+    {{!-- <br>
+    <input type="file" name="RoomPic">
+    <br> --}}
+
+    <a href="/apps/editApp/{{app._id}}" class="btn AppClientSubmit">Edit this Application</a>
+    <br><br>
+    <form id="deleteButtonForm" method="POST" action="/apps/delete/{{app._id}}?_method=DELETE" class="roombtn">
+        <input type="submit" class="btn email" value="Delete This Application">
+    </form>
+    <a href="/apps" class="btn AppClientSubmit">Back to Application List</a>
+</a>

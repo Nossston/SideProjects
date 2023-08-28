@@ -1,0 +1,519 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+video:focus {
+  outline: none;
+}
+
+header {
+  /* background-image: url("/img/Main_Pic.jpg");
+    background-size: cover;
+    height: 100vh; */
+  max-width: 100%;
+  padding: 5vh 4vw;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  text-align: right;
+}
+
+nav a
+{
+    color: #393939;
+    align-self: center;
+    padding-top: 2;
+    padding-right: 1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.abicon {
+  font-size: 2rem;
+}
+
+/* The Modal (background) */
+.modal1,
+.modal2,
+.modal3 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 2px solid #888;
+  width: 50vw; /* Could be more or less, depending on screen size */
+}
+
+.errs {
+  padding: 0.2rem 0;
+  color: #dd4b39;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #ffdab9;
+}
+
+/* style inputs and link buttons */
+
+.btn {
+  text-align: center;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3b5998;
+  color: white;
+}
+
+.google {
+  background-color: #55acee;
+  color: white;
+}
+
+.email {
+  background-color: #dd4b39;
+  color: white;
+}
+
+/* Two-column layout */
+.col {
+  float: center;
+  width: auto;
+  margin: auto;
+  padding: 40px;
+  margin-top: 6px;
+}
+
+.aligncenter {
+  text-align: center;
+}
+
+.alignleft {
+  text-align: left;
+  padding: 5px 0;
+}
+
+.alignjust {
+  text-align: justify;
+}
+
+.bluelink {
+  color: #8ec6f7;
+}
+
+.bluelink:hover {
+  color: #4498e0;
+}
+
+.or {
+  color: #696969;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #696969;
+  line-height: 0.1em;
+  margin: 20px 0;
+}
+
+.or span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+#signupbut {
+  border: none;
+  background: none;
+}
+
+.datebx {
+  width: 100%;
+  color: #696969;
+  border: none;
+}
+
+.txtbx,
+.adultslct {
+  text-align: left;
+  max-width: 100%;
+  width: 100%;
+  padding: 12px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-radius: 4px;
+  margin: 8px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+.two-grids {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.three-grids {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 36px;
+}
+
+.four-grids {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.chkbx {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  grid-gap: 8px;
+  justify-items: left;
+}
+
+#cb,
+#rmb {
+  font-size: 3rem;
+  align-self: center;
+}
+
+.greytxt {
+  color: #696969;
+}
+
+footer {
+  background-color: #f9df75;
+}
+
+.footer2 {
+  text-align: center;
+  padding-top: 15px;
+  border-bottom: #808080 dashed 2px;
+}
+
+.footer2 span {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: center;
+  font-family: "Kalam", cursive;
+  color: #696969;
+}
+
+.footer2 i {
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+
+.footer2 nav a {
+  line-height: 5rem;
+  color: #393939;
+}
+
+.footer2 nav a:visited {
+  color: #393939;
+}
+
+.audiv {
+  padding: 2.5%;
+}
+
+.audivcon {
+  margin: 1.5rem 13%;
+  line-height: 1.5rem;
+}
+
+figure {
+  width: 100%;
+}
+
+.headshot {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  padding-bottom: 5%;
+}
+
+figcaption {
+  color: #393939;
+  font-weight: bold;
+}
+
+.smallerfont {
+  line-height: 1rem;
+  font-size: 0.8rem;
+  color: #696969;
+}
+
+.brder {
+  border: #696969 solid 2px;
+}
+
+/******** RESPONSIVE DESIGN ********/
+
+/******** LAPTOP ********/
+
+@media screen and (min-width: 1025px) {
+  body {
+    width: 100%;
+    min-width: 1025px;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+  body {
+    max-width: 1024px;
+    min-width: 801px;
+  }
+
+  header {
+    width: 100%;
+    border-bottom: #393939;
+  }
+
+  .modal-content {
+    width: 59vw; /* Could be more or less, depending on screen size */
+  }
+
+  .btn {
+    padding: 8px;
+    margin: 5px 0;
+    font-size: 1rem;
+    line-height: 10px;
+  }
+
+  /* Two-column layout */
+  .col {
+    padding: 25px;
+    margin-top: 6px;
+  }
+
+  .or {
+    line-height: 0.1rem;
+    margin: 15px 0;
+  }
+
+  .txtbx,
+  .adultslct {
+    padding: 8px;
+    font-size: 1rem;
+    line-height: 10px;
+  }
+
+  .three-grids {
+    grid-gap: 21px;
+  }
+
+  .four-grids {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 21px;
+  }
+
+  .footer1 {
+    padding: 15px 50px 0 10px;
+  }
+
+  .footer2 {
+    padding-bottom: 15px;
+  }
+
+  .footer2 span {
+    font-size: 1.2rem;
+  }
+
+  .footer2 i {
+    font-size: 1.3rem;
+  }
+
+  .footer2 nav a {
+    line-height: 2.5rem;
+  }
+
+  .audivcon {
+    margin: 1.2rem 8%;
+  }
+}
+
+/******** TABLET ********/
+
+@media screen and (min-width: 501px) and (max-width: 800px) {
+  body {
+    max-width: 800px;
+    min-width: 501px;
+  }
+
+  header {
+    width: 100%;
+    border-bottom: #393939;
+  }
+
+  .modal-content {
+    width: 66vw; /* Could be more or less, depending on screen size */
+  }
+
+  .btn {
+    padding: 8px;
+    margin: 5px 0;
+    font-size: 1rem;
+    line-height: 10px;
+  }
+
+  /* Two-column layout */
+  .col {
+    padding: 25px;
+    margin-top: 6px;
+  }
+
+  .or {
+    line-height: 0.1rem;
+    margin: 15px 0;
+  }
+
+  .txtbx,
+  .adultslct {
+    padding: 8px;
+    font-size: 1rem;
+    line-height: 10px;
+  }
+
+  .three-grids {
+    grid-gap: 21px;
+  }
+
+  .four-grids {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 21px;
+  }
+
+  .footer1 {
+    padding: 15px 50px 0 10px;
+  }
+
+  .footer2 {
+    padding-bottom: 15px;
+  }
+
+  .footer2 span {
+    font-size: 1.2rem;
+  }
+
+  .footer2 i {
+    font-size: 1.3rem;
+  }
+
+  .footer2 nav a {
+    line-height: 2.5rem;
+  }
+
+  .audivcon {
+    margin: 1.2rem 8%;
+  }
+}
+
+/******** SMARTPHONE ********/
+
+@media (max-width: 500px) {
+  body {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  header {
+    width: inherit;
+    padding: 3vh 8vw;
+    line-height: 4vh;
+    display: block;
+    text-align: left;
+  }
+
+  nav a {
+    padding-top: 5px;
+    padding-right: 3vw;
+  }
+
+  .two-grids {
+    max-width: 100%;
+    display: block;
+  }
+
+  .three-grids {
+    display: block;
+  }
+
+  .four-grids {
+    display: block;
+  }
+
+  .footer2 {
+    padding-bottom: 15px;
+  }
+
+  .footer2 {
+    padding: 0 19px 15px 19px;
+  }
+
+  .footer2 span {
+    font-size: 1.2rem;
+  }
+
+  .footer2 i {
+    font-size: 1.3rem;
+  }
+
+  .footer2 nav a {
+    line-height: 2.5rem;
+    padding-bottom: 25px;
+  }
+
+  .audivcon {
+    margin: 1.2rem 8%;
+    line-height: 1.2rem;
+  }
+
+  .footer1 {
+    display: block;
+    justify-items: center;
+    text-align: center;
+    padding: 25px;
+  }
+}

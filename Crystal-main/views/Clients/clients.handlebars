@@ -1,0 +1,62 @@
+<head>
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<div class="body-container">
+  <div class="header" style="display: flex;">
+    <div style="flex: 1;">
+      <h2 class="text-left">Clients</h2>
+    </div>
+    <div class="text-center" style="flex: 1; max-width: 150px;">
+      <a class="btn-client btn-black" href="/clients/createClient">Add New
+        Client</a>
+    </div>
+  </div>
+  <table class="table table-striped" id="clients">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone #</th>
+        <th scope="col nosort">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each clients}}
+        <tr id={{clientId}}>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}</td>
+          <td>{{address}}</td>
+          <td>{{email}}</td>
+          <td>{{phoneNumber}}</td>
+          <td class="aligncenter">
+            <a
+              class="btn-client btn-secondary"
+              href="/clients/clientDetail/{{clientId}}"
+            >Details</a>
+            <a
+              class="btn-client btn-warning"
+              href="/clients/editClient/{{clientId}}"
+            >Edit</a>
+            <form
+              style="padding: 0;"
+              class="btn-client"
+              method="POST"
+              action="/clients/deleteClient/{{clientId}}"
+            >
+              <button
+                class="btn-client btn-danger"
+                type="submit"
+              >Delete</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<script>
+  $(document).ready( function () { $('#clients').DataTable( { columnDefs: [ {
+  orderable: false, targets: -1 } ] } ); } );
+</script>

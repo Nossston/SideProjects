@@ -1,0 +1,17 @@
+<head>
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+<h2 class="aligncenter">Send an Email</h2><br />
+<div class="form-content">
+  <form action="/sendEmail" method="POST">
+    <label for="To">To</label>
+    <input type="text" name="To" class="txtbx" value="{{#if userEmail}}{{userEmail}}{{/if}}" />
+    <label for="Subject">Subject</label>
+    <input type="text" name="Subject" class="txtbx" />
+    <label for="Content">Content</label>
+    <textarea rows="10" type="text" name="Content" class="txtbx"></textarea>
+    <div class="input-group btn-cotainer">
+      <input type="submit" class="btn btn-dark" value="Send" />
+    </div>
+  </form>
+</div>

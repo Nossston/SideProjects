@@ -1,0 +1,60 @@
+<head>
+  <link rel="stylesheet" href="/css/empAndAdminDash.css" />
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<h2 class="aligncenter">Monthly Report of {{emp.firstName}} {{emp.lastName}}</h2>
+<br />
+<br />
+
+<div class="aligncenter">
+    <a class="btn-client btn-dark" type="submit" href="/admin">Back to Dashboard</a>
+</div>
+<br><br>
+
+<div class="aligncenter">
+    <form method="POST" action="/admin/empMonthly/{{emp._id}}">
+        <label for="month" class="bigger-text">Select month:</label>
+        <input class="btn-client" type="month" id="month" name="month" value="{{currentYear}}-{{currentMonth}}">
+        <input class="btn-client btn-dark" type="submit" value="Check Summary Reports" />
+    </form>
+</div>
+<br><br>
+
+<div class="body-container">
+    <table class="table table-striped" id="monthlySummary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Signed</th>
+                <th scope="col">Paid</th>
+                <th scope="col">Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each casetypes}}
+            {{!-- {{#each subCType}} --}}
+            <tr>
+                <td class="aligncenter">{{subCaseName}}</td>
+                <td class="aligncenter">{{signed}}</td>
+                <td class="aligncenter">{{paid}}</td>
+                <td class="aligncenter">{{submitted}}</td>
+            </tr>
+            {{!-- {{/each}} --}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#monthlySummary').DataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            searching: false
+        }
+        );
+    });
+</script>

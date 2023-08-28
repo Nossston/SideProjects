@@ -1,0 +1,15 @@
+<head>
+    <link rel="stylesheet" href="/css/clientAndApps_style.css">
+</head>
+
+<h2 class="aligncenter">Create an Application</h2><br>
+<div class="form-content">
+    <form action="/admin/addCaseType" method="POST">
+        {{#each errors}}<div class="errs alignleft">{{this}}</div>{{/each}}
+        <label for="caseType">Case Type</label>
+        <input type="text" name="caseType" placeholder="Case Type" class="txtbx">
+        <label for="subCaseType">Sub-Case Type</label>
+        <input type="text" name="subCaseType" placeholder="Sub-Case Type" class="txtbx">
+        <input type="submit" class="btn AppClientSubmit" value="Create This Case Type">
+    </form>
+</div>

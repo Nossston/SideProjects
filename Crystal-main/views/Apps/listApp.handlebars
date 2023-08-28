@@ -1,0 +1,72 @@
+<head>
+  {{! <link rel="stylesheet" href="/css/clientAndApps_style.css"> }}
+  <link rel="stylesheet" href="/css/client.css" />
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+
+<h2 class="aligncenter">Applications</h2><br />
+
+<div class="body-container">
+  <div class="header" style="display: flex;">
+    <div style="flex: 1;">
+      <h2 class="text-left">Applications</h2>
+    </div>
+    {{! <div class="displayMoment"></div> }}
+    <div class="text-center" style="flex: 1; max-width: 150px;">
+      <a class="btn-client btn-black" href="/apps/createApp">Add New Application</a>
+    </div>
+  </div>
+  <table class="table table-striped" id="apps">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Client</th>
+        <th scope="col">Case Type</th>
+        <th scope="col">Submission Date</th>
+        <th scope="col nosort">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each apps}}
+        <tr id={{_id}}>
+          <td>{{client.firstName}} {{client.lastName}}</td>
+          <td>{{subCaseType}}</td>
+          <td class="displayMoment">{{submitDate}}</td>
+          <td class="aligncenter">
+            <a
+              class="btn-client btn-secondary"
+              href="/apps/appDetail/{{this._id}}"
+            >Details</a>
+            <a
+              class="btn-client btn-warning"
+              href="/apps/editApp/{{this._id}}"
+            >Edit</a>
+            <form
+              style="padding: 0;"
+              class="btn-client"
+              method="POST"
+              action="/apps/delete/{{this._id}}?_method=DELETE"
+            >
+              <input
+                class="btn-client btn-danger"
+                type="submit"
+                value="Delete"
+              />
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function () {
+      $('#apps').DataTable({
+        columnDefs: [{
+          orderable: false, targets: -1
+        }]
+      });
+    }); //var NowMoment = moment(); //var
+    eDisplayMoment = document.querySelector('.displayMoment').innerHtml =
+      NowMoment.format('YYYY-M-D');
+</script>

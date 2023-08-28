@@ -1,0 +1,93 @@
+<head>
+  <link rel="stylesheet" href="/css/empAndAdminDash.css" />
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+
+<h2 class="aligncenter">Welcome to Employee's Dashboard</h2>
+<br />
+<br />
+
+<div class="body-container">
+  <div class="container">
+    {{! <div>
+      <a class="btn-client btn-black" href="#">Send Email</a>
+    </div> }}
+    <div>
+      <a class="btn-client btn-black" href="/clients">Client List</a>
+    </div>
+    <div>
+      <a class="btn-client btn-black" href="/apps">Application List</a>
+    </div>
+  </div>
+  <br /><br />
+
+  <div class="container">
+    <div style="flex-grow: 3" class="left-grid">
+      <div class="aligncenter title">Notifications and Reminders</div>
+      <table class="table table-striped" id="notification">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Client</th>
+            <th scope="col">Event Summary</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each notifications}}
+            <tr>
+              <td class="aligncenter">{{client.firstName}}
+                {{client.lastName}}</td>
+              <td class="aligncenter">{{eventName}}</td>
+              <td class="aligncenter">{{dueDate}}</td>
+              <td class="aligncenter">{{client.phoneNumber}}</td>
+              <td class="aligncenter">
+                <a
+                  class="btn-client btn-secondary"
+                  href="user/sendemail/{{client.clientId}}"
+                >
+                  Send Email
+                </a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div style="flex-grow: 2" class="right-grid">
+      <div class="aligncenter title">Helpful Documents</div>
+      <table class="table table-striped" id="helpfulDoc">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Document Name</th>
+            <th scope="col">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{!-- {{#each apps}}
+            <tr id={{_id}}>
+              <td class="aligncenter">{{client.firstName}}
+                {{client.lastName}}</td>
+              <td class="aligncenter">{{subCaseType.subCaseType}}</td>
+              <td class="aligncenter">{{submitDate}}</td>
+              <td class="aligncenter"></td>
+              <td class="aligncenter"></td>
+            </tr>
+          {{/each}} --}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br /><br />
+</div>
+
+<script>
+  $(document).ready( function () { $('#notification').DataTable( { "bPaginate":
+  false, "bLengthChange": false, "bFilter": true, "bInfo": false, "bAutoWidth":
+  false, searching: false, columnDefs: [ { orderable: false, targets: -1 } ] }
+  ); } ); $(document).ready( function () { $('#helpfulDoc').DataTable( {
+  "bPaginate": false, "bLengthChange": false, "bFilter": true, "bInfo": false,
+  "bAutoWidth": false, searching: false, columnDefs: [ { orderable: false,
+  targets: -1 } ] } ); } );
+</script>

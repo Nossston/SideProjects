@@ -1,0 +1,168 @@
+<head>
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+
+<h2 class="aligncenter">Create an Application</h2><br />
+<div class="form-content">
+  <form action="/apps/createApp" method="POST" onsubmit="return validateForm()">
+    {{#each errors}}<div class="errs alignleft">{{this}}</div>{{/each}}
+    <label for="client">Client<span class="required">*</span></label>
+    <select name="client" id="client" class="txtbx">
+      <option value="0">Choose a Client</option>
+      {{#each clients}}
+        <option value="{{this._id}}">{{this.firstName}}
+          {{this.lastName}}</option>
+      {{/each}}
+    </select>
+    <small id="client-error" class="error-message"></small>
+
+    <label for="employee">Employee in Charge<span class="required">*</span></label>
+    <select name="employee" id="employee" class="txtbx">
+      <option value="0">Choose an Employee</option>
+      {{#each emp}}
+        <option value="{{this._id}}">{{this.firstName}}
+          {{this.lastName}}</option>
+      {{/each}}
+    </select>
+    <small id="employee-error" class="error-message"></small>
+
+    <label for="caseType">Case Type<span class="required">*</span></label>
+    <select name="caseType" id="caseType" class="txtbx">
+      {{!-- {{#each casetypes}}
+            <option value={{this._id}}>{{name}}</option>
+            {{/each}} --}}
+      <option value="0">Choose a Case Type</option>
+      {{#each casetypes}}
+        <optgroup label={{name}}>
+          {{#each subCType}}
+            <option value={{id}}>{{name}}</option>
+          {{/each}}
+        </optgroup>
+      {{/each}}
+    </select>
+    <small id="caseType-error" class="error-message"></small>
+
+    <label for="contractNumber">Contract Number<span class="required">*</span></label>
+    <input
+      type="text"
+      id="contractNumber"
+      name="contractNumber"
+      placeholder="Contract Number"
+      class="txtbx"
+    />
+    <small id="contractNumber-error" class="error-message"></small>
+
+    <label for="contractDate">Contract Signing Date<span class="required">*</span></label>
+    <input type="date" name="contractDate" id="contractDate" class="txtbx" />
+    <small id="contractDate-error" class="error-message"></small>
+
+    {{!-- Payment Details --}}
+    <fieldset style="padding: 1.2rem; margin-bottom: 0.5rem;">
+      <legend>Payment Details</legend>
+      <div class="input-group">
+        <label for="paymentAmt">Payment Amount<span class="required">*</span></label>
+        <input
+          class="txtbx"
+          id="paymentAmt"
+          name="paymentAmt"
+          type="number"
+          placeholder="Please enter payment amount"
+          value={{#if payment.amount}}"{{payment.amount}}"{{else}}""{{/if}}
+        />
+        <small id="paymentAmt-error" class="error-message"></small>
+      </div>
+      <div class="input-group">
+        <label for="paymentDate">Payment Date<span class="required">*</span></label>
+        <input
+          class="txtbx"
+          id="paymentDate"
+          name="paymentDate"
+          type="date"
+          placeholder="Please choose payment date"
+          {{!-- value={{#if payment.date}}"{{payment.date}}"{{else}}""{{/if}} --}}
+        />
+        <small id="paymentDate-error" class="error-message"></small>
+      </div>
+      <div class="input-group">
+        <label for="paymentMethod">Payment Method<span class="required">*</span></label>
+        <select name="paymentMethod" id="paymentMethod" class="txtbx">
+          {{#each paymenttypes}}
+            <option value={{value}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <small id="paymentMethod-error" class="error-message"></small>
+      </div>
+    </fieldset>
+
+    {{!-- <label for="paymentHistory">Payment History</label>
+    <select name="paymentHistory" class="txtbx">
+      {{#each pments}}
+        <option value={{this._id}}>{{this._id}}</option>
+      {{/each}}
+    </select> --}}
+    <label for="submissionDate">Date Submit<span class="required">*</span></label>
+    <input type="date" name="submissionDate" id="submissionDate" class="txtbx" />
+    <small id="submissionDate-error" class="error-message"></small>
+
+    <label for="appStatus">Application Status<span class="required">*</span></label>
+    <select name="appStatus" id="appStatus" class="txtbx">
+      {{!-- <option value="open">Open</option>
+      <option value="inProgress">In Progress</option>
+      <option value="closed">Closed</option> --}}
+        {{#each appstatus}}
+          <option value={{value}}>{{name}}</option>
+        {{/each}}
+    </select>
+    <small id="appStatus-error" class="error-message"></small>
+    
+    <label for="notes">Notes</label>
+    <textarea
+      name="notes"
+      placeholder="Additional Notes"
+      class="txtbx des"
+    ></textarea>
+    {{! <br>
+        <input type="file" name="RoomPic">
+        <br> }}
+    <input
+      type="submit"
+      class="btn AppClientSubmit"
+      value="Create This Application"
+    />
+  </form>
+</div>
+<script>
+  // Front End field validation
+  function validateForm() {
+  var errorCounts = 0;
+
+  var validate = (id, errorMessage, defaultValue = '') => {
+    var field = $(`#${id}`).val();
+    $(`#${id}-error`).html('');
+    if (field === null || field === undefined || field.trim() === '' ||  field.trim() === defaultValue) {
+      $(`#${id}-error`).html(errorMessage)
+      return false;
+    }
+    return true;
+  };
+
+
+  // Validate required fields
+  errorCounts += validate('client', 'Please choose a client.', '0') ? 0 : 1;
+  errorCounts += validate('employee', 'Please choose an employee.', '0') ? 0 : 1;
+  errorCounts += validate('caseType', 'Please choose a case type', '0') ? 0 : 1;
+  errorCounts += validate('contractNumber', 'Please enter contract number.') ? 0 : 1;
+  errorCounts += validate('contractDate', 'Please choose contract date.') ? 0 : 1;
+  errorCounts += validate('paymentAmt', 'Please enter payment amount.') ? 0 : 1;
+  errorCounts += validate('paymentDate', 'Please choose payment date.') ? 0 : 1;
+  errorCounts += validate('paymentMethod', 'Please choose payment method.', '0') ? 0 : 1;
+  errorCounts += validate('submissionDate', 'Please choose submission date.') ? 0 : 1;
+  errorCounts += validate('appStatus', 'Please choose application status.', '0') ? 0 : 1;
+
+
+  if (errorCounts > 0) {
+    return false;
+  }
+  return true;
+}
+</script>

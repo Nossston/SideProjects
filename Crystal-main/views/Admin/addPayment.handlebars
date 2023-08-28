@@ -1,0 +1,32 @@
+<head>
+    <link rel="stylesheet" href="/css/clientAndApps_style.css">
+</head>
+
+<h2 class="aligncenter">Create an Application</h2><br>
+<div class="form-content">
+    <form action="/admin/addPayment" method="POST">
+        {{#each errors}}<div class="errs alignleft">{{this}}</div>{{/each}}
+        <label for="amount">Amount</label>
+        <input type="text" name="amount" placeholder="Payment Amount" class="txtbx">
+        <label for="payDate">Payment Date</label>
+        <input type="date" name="payDate" placeholder="Payment Date" class="txtbx">
+        <label for="methd">Payment Method</label>
+        <label class="checkbox-inline">
+            <input type="radio" id="Debit" name="methd" value="Debit" />
+            Debit Card
+        </label>
+        <label class="checkbox-inline">
+            <input type="radio" id="Credit" name="methd" value="Credit" />
+            Credit Card
+        </label>
+        <label class="checkbox-inline">
+            <input type="radio" id="Cash" name="methd" value="Cash" />
+            Cash
+        </label>
+        <label class="checkbox-inline">
+            <input type="radio" id="Other" name="methd" value="Other" />
+            Other
+        </label>
+        <input type="submit" class="btn AppClientSubmit" value="Create This Payment">
+    </form>
+</div>

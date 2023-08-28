@@ -1,0 +1,115 @@
+<head>
+  <link rel="stylesheet" href="/css/empAndAdminDash.css" />
+  <link rel="stylesheet" href="/css/client.css" />
+</head>
+<h2 class="aligncenter">Welcome to Manager's Dashboard</h2>
+<br />
+<br />
+
+<div class="body-container">
+  {{!-- <div class="two-grids"> --}}
+    <div class="aligncenter">
+        <a class="btn-client btn-black" href="/clients">Clients</a>
+        <a class="btn-client btn-black" href="/apps">Applications</a>
+        <a class="btn-client btn-black" href="/employees">Employees</a>
+    </div>
+    <br /><br />
+
+    <div class="aligncenter">
+      <form method="POST" action="/admin">
+        <label for="month" class="bigger-text">Select month:</label>
+        <input class="btn-client" type="month" id="month" name="month" value="{{currentYear}}-{{currentMonth}}">
+        <input class="btn-client btn-dark" type="submit" value="Check Summary Reports" />
+        <a class="btn-client btn-dark" href="/admin">Check Current Month</a>
+      </form>
+    </div>
+    <br><br>
+  {{!-- </div> --}}
+
+  <div class="two-grids">
+    <div class="left-grid border-dark">
+      <table class="table table-striped" id="monthlySummary">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Signed</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each casetypes}}
+          {{!-- {{#each subCType}} --}}
+          <tr>
+            <td class="aligncenter">{{subCaseName}}</td>
+            <td class="aligncenter">{{signed}}</td>
+            <td class="aligncenter">{{paid}}</td>
+            <td class="aligncenter">{{submitted}}</td>
+          </tr>
+          {{!-- {{/each}} --}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class="right-grid border-dark">
+      <table class="table table-striped" id="monthlyEmp">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Employee</th>
+            <th scope="col">Visa</th>
+            <th scope="col">Immigration</th>
+            <th scope="col">Education</th>
+            <th scope="col">Total $ Signed</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each employees}}
+          <tr id={{empId}}>
+            <td class="aligncenter">{{empName}}</td>
+            <td class="aligncenter">{{visa}}</td>
+            <td class="aligncenter">{{immi}}</td>
+            <td class="aligncenter">{{edu}}</td>
+            <td class="aligncenter">{{amount}}</td>
+            <td class="aligncenter">
+              <a
+                class="btn-client btn-warning"
+                href="/admin/empMonthly/{{empId}}"
+              >Detail</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<script>
+
+  $(document).ready(function () {
+    $('#monthlySummary').DataTable({
+        "bPaginate": false, 
+        "bLengthChange": true, 
+        "bFilter": true, 
+        "bInfo": true,
+        "bAutoWidth": false, 
+        searching: false
+    }
+    );
+    }); $(document).ready(function () {
+      $('#monthlyEmp').DataTable({
+        "bPaginate": false, 
+        "bLengthChange": false, 
+        "bFilter": true, 
+        "bInfo": true,
+        "bAutoWidth": false, 
+        searching: false,
+        columnDefs: [{
+          orderable: false, targets: -1
+        }]
+      });
+    });
+
+</script>

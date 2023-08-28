@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/login.css" />
+<body>
+  <div class="bg-img">
+    <div class="content">
+      <p style="color: white; font-size: large">
+        Reset the password via email
+      </p>
+      <form action="/forgotReset/{{id}}/?_method=PUT" method="POST">
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="pass-key"
+            required
+            placeholder="New Password"
+          />
+          <span class="show">SHOW</span>
+        </div>
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="confirmPassword"
+            for="confirmPassword"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+        <br />
+        <div class="field">
+          <input type="submit" value="RESET" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    const pass_field = document.querySelector(".pass-key"); const showBtn =
+    document.querySelector(".show"); showBtn.addEventListener("click", function
+    () { if (pass_field.type === "password") { pass_field.type = "text";
+    showBtn.textContent = "HIDE"; showBtn.style.color = "#3498db"; } else {
+    pass_field.type = "password"; showBtn.textContent = "SHOW";
+    showBtn.style.color = "#222"; } });
+  </script>
+</body>

@@ -1,0 +1,183 @@
+<head>
+  <link rel="stylesheet" href="/css/clientAndApps_style.css" />
+</head>
+
+<h2 class="aligncenter">Edit an Application</h2><br />
+{{#if error}}
+<div style="text-align: center; color: red">{{error}}</div>
+{{/if}}
+
+<div class="form-content">
+  <form method="POST" action="/apps/editApp/{{app._id}}/?_method=PUT">
+    {{#each errors}}<div class="errs alignleft">{{this}}</div>{{/each}}
+    <label for="client">Client<span class="required">*</span></label>
+    <input
+      name="client"
+      type="text"
+      class="txtbx"
+      value="{{app.client.firstName}} {{app.client.lastName}}"
+      readonly="true"
+    />
+    <label for="employee">Employee in Charge<span class="required">*</span></label>
+    <input
+      name="employee"
+      type="text"
+      class="txtbx"
+      value="{{app.agent.firstName}} {{app.agent.lastName}}"
+      readonly="true"
+    />
+    <label for="caseType">Case Type<span class="required">*</span></label>
+    {{!-- <input
+      name="caseType"
+      type="text"
+      class="txtbx"
+      value="{{app.subCaseType}}"
+      readonly="true"
+    /> --}} 
+    <select name="caseType" id="caseType" class="txtbx">
+      <option value="0">Choose a Case Type</option>
+      {{#each casetypes}}
+        <optgroup label={{name}}>
+          {{#each subCType}}
+            <option value={{id}} {{#ifEquals @root.app.subCaseType id}} selected {{/ifEquals}}>{{name}}</option>
+          {{/each}}
+        </optgroup>
+      {{/each}}
+    </select>
+    <small id="caseType-error" class="error-message"></small>
+    <label for="contractNumber">Contract Number<span class="required">*</span></label>
+    <input
+      type="text"
+      name="contractNumber"
+      value="{{app.contractID}}"
+      class="txtbx"
+    />
+    <label for="contractDate">Contract Signing Date<span class="required">*</span></label>
+    <input
+      type="date"
+      name="contractDate"
+      value="{{app.contractDate}}"
+      class="txtbx"
+    />
+    {{!-- <label for="paymentHistory">Payment History</label>
+    <table id="listTable">
+      <tr>
+        <th>Payment ID</th>
+        <th>Amount</th>
+        <th>Payment Date</th>
+        <th>Method</th>
+      </tr>
+      <tr>
+        <td>{{app.payment.paymentID}}</td>
+        <td>{{app.payment.amount}}</td>
+        <td>{{app.payment.date}}</td>
+        <td>{{app.payment.method}}</td>
+      </tr>
+    </table> --}}
+        {{!-- Payment Details --}}
+    <fieldset style="padding: 1.2rem; margin-bottom: 0.5rem;">
+      <legend>Payment Details</legend>
+      <div class="input-group">
+        <label for="paymentAmt">Payment Amount<span class="required">*</span></label>
+        <input
+          class="txtbx"
+          id="paymentAmt"
+          name="paymentAmt"
+          type="number"
+          value={{#if app.payment.amount}}"{{app.payment.amount}}"{{else}}""{{/if}}
+        />
+      </div>
+      <div class="input-group">
+        <label for="paymentDate">Payment Date<span class="required">*</span></label>
+        <input
+          class="txtbx"
+          id="paymentDate"
+          name="paymentDate"
+          type="date"
+          placeholder="Please choose payment date"
+          value={{#if app.payment.date}}"{{app.payment.date}}"{{else}}""{{/if}}
+        />
+      </div>
+      <div class="input-group">
+        <label for="paymentMethod">Payment Method<span class="required">*</span></label>
+        <select name="paymentMethod" id="paymentMethod" class="txtbx">
+          {{#each paymenttypes}}
+            {{!-- <option value={{value}}>{{name}}</option> --}}
+            <option value={{value}} {{#ifEquals @root.app.payment.method value}} selected {{/ifEquals}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <small id="paymentMethod-error" class="error-message"></small>
+      </div>
+    </fieldset>
+    <label for="submissionDate">Date Submit<span class="required">*</span></label>
+    <input
+      type="date"
+      name="submissionDate"
+      value="{{app.submitDate}}"
+      class="txtbx"
+    />
+    <label for="appStatus">Application Status<span class="required">*</span></label>
+    {{!-- <select
+      name="appStatus"
+      name="appStatus"
+      selected={{app.appStatus}}
+      class="txtbx"
+    >
+      <option value="open">Open</option>
+      <option value="inProgress">In Progress</option>
+      <option value="closed">Closed</option>
+    </select> --}}
+    <select name="appStatus" id="appStatus" class="txtbx">
+      {{!-- <option value="open">Open</option>
+      <option value="inProgress">In Progress</option>
+      <option value="closed">Closed</option> --}}
+        {{#each appstatus}}
+          <option value={{value}} {{#ifEquals @root.app.appStatus value}} selected {{/ifEquals}}>{{name}}</option>
+        {{/each}}
+    </select>
+    <small id="appStatus-error" class="error-message"></small>
+    <label for="notes">Notes</label>
+    <textarea
+      name="notes"
+      placeholder="Additional Notes"
+      class="txtbx des"
+    >{{app.notes}}</textarea>
+    {{! <br>
+        <input type="file" name="RoomPic">
+        <br> }}
+    <input
+      type="submit"
+      class="btn AppClientSubmit"
+      value="Edit This Application"
+    />
+  </form>
+  <a href="/apps" class="btn AppClientSubmit">Cancel</a>
+</div>
+<script>
+  // Front End field validation
+  function validateForm() {
+  var errorCounts = 0;
+
+  var validate = (id, errorMessage, defaultValue = '') => {
+    var field = $(`#${id}`).val();
+    $(`#${id}-error`).html('');
+    if (field === null || field === undefined || field.trim() === '' ||  field.trim() === defaultValue) {
+      $(`#${id}-error`).html(errorMessage)
+      return false;
+    }
+    return true;
+  };
+
+
+  // Validate required fields
+  errorCounts += validate('caseType', 'Please choose a case type', '0') ? 0 : 1;
+  errorCounts += validate('paymentMethod', 'Please choose payment method.', '0') ? 0 : 1;
+  errorCounts += validate('appStatus', 'Please choose application status.', '0') ? 0 : 1;
+
+
+  if (errorCounts > 0) {
+    return false;
+  }
+  return true;
+}
+</script>
